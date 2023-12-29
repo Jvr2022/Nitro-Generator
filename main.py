@@ -1,80 +1,80 @@
 import random
 import string
 import time
+from tqdm import tqdm
+from colorama import Fore, Style
 
 def print_header():
-    print("""
-    \033[1;36m███╗░░██╗██╗████████╗██████╗░░█████╗░░ ██████╗░███████╗███╗░░██╗███████╗██████╗░░█████╗░████████╗░█████╗░██████╗░\033[0m
-    \033[1;36m████╗░██║██║╚══██╔══╝██╔══██╗██╔══██╗ ██╔════╝░██╔════╝████╗░██║██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗\033[0m
-    \033[1;36m██╔██╗██║██║░░░██║░░░██████╔╝██║░░██║ ██║░░██╗░█████╗░░██╔██╗██║█████╗░░██████╔╝███████║░░░██║░░░██║░░██║██████╔╝\033[0m
-    \033[1;36m██║╚████║██║░░░██║░░░██╔══██╗██║░░██║ ██║░░╚██╗██╔══╝░░██║╚████║██╔══╝░░██╔══██╗██╔══██║░░░██║░░░██║░░██║██╔══██╗\033[0m
-    \033[1;36m██║░╚███║██║░░░██║░░░██║░░██║╚█████╔╝ ╚██████╔╝███████╗██║░╚███║███████╗██║░░██║██║░░██║░░░██║░░░██║░░██║██║░░██║\033[0m
-    \033[1;36m╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝░╚════╝░░ ╚═════╝░╚══════╝╚═╝░░╚══╝╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝\033[0m
-    \033[1;36m+-----------------------------------------------------------------+\033[0m
-    \033[1;36m\x1b[37;36m\033[0m
-    \033[1;36mCreated by Jvr2022\033[0m
-    \033[1;36mhttps://github.com/Jvr2022\033[0m
-    \033[1;36m\033[0m
-    \033[1;36m+-----------------------------------------------------------------+\033[0m
+    print(f"""
+    {Fore.CYAN}███╗░░██╗██╗████████╗██████╗░░█████╗░░ ██████╗░███████╗███╗░░██╗███████╗██████╗░░█████╗░████████╗░█████╗░██████╗░{Style.RESET_ALL}
+    {Fore.CYAN}████╗░██║██║╚══██╔══╝██╔══██╗██╔══██╗ ██╔════╝░██╔════╝████╗░██║██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗{Style.RESET_ALL}
+    {Fore.CYAN}██╔██╗██║██║░░░██║░░░██████╔╝██║░░██║ ██║░░██╗░█████╗░░██╔██╗██║█████╗░░██████╔╝███████║░░░██║░░░██║░░██║██████╔╝{Style.RESET_ALL}
+    {Fore.CYAN}██║╚████║██║░░░██║░░░██╔══██╗██║░░██║ ██║░░╚██╗██╔══╝░░██║╚████║██╔══╝░░██╔══██╗██╔══██║░░░██║░░░██║░░██║██╔══██╗{Style.RESET_ALL}
+    {Fore.CYAN}██║░╚███║██║░░░██║░░░██║░░██║╚█████╔╝ ╚██████╔╝███████╗██║░╚███║███████╗██║░░██║██║░░██║░░░██║░░░╚█████╔╝██║░░██║{Style.RESET_ALL}
+    {Fore.CYAN}╚═╝░░╚══╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝░╚════╝░░ ╚═════╝░╚══════╝╚═╝░░╚══╝╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░╚════╝░╚═╝░░╚═╝{Style.RESET_ALL}
+    {Fore.CYAN}+-----------------------------------------------------------------+{Style.RESET_ALL}
+    {Fore.CYAN}\x1b[37;36m{Style.RESET_ALL}
+    {Fore.CYAN}Created by Jvr2022{Style.RESET_ALL}
+    {Fore.CYAN}https://github.com/Jvr2022{Style.RESET_ALL}
+    {Fore.CYAN}{Style.RESET_ALL}
+    {Fore.CYAN}+-----------------------------------------------------------------+{Style.RESET_ALL}
     """)
 
 def print_disclaimer():
-    print("\033[1;31m\nTHIS SOFTWARE IS PROVIDED \"AS IS\" WITHOUT WARRANTY OF ANY KIND.")
+    print(f"{Fore.RED}\nTHIS SOFTWARE IS PROVIDED \"AS IS\" WITHOUT WARRANTY OF ANY KIND.")
     print("YOU MAY USE THIS SOFTWARE AT YOUR OWN RISK. THE USE IS COMPLETE RESPONSIBILITY OF THE END-USER.")
-    print("THE DEVELOPERS ASSUME NO LIABILITY AND ARE NOT RESPONSIBLE FOR ANY MISUSE OR DAMAGE CAUSED BY THIS PROGRAM.\033[0m")
+    print("THE DEVELOPERS ASSUME NO LIABILITY AND ARE NOT RESPONSIBLE FOR ANY MISUSE OR DAMAGE CAUSED BY THIS PROGRAM.{Style.RESET_ALL}")
 
 def generate_nitro_codes(num):
-  nitro_codes = []
-  for _ in range(num):
-      code = "".join(random.choices(
-          string.ascii_uppercase + string.digits + string.ascii_lowercase,
-          k=16
-      ))
-      link = f"\033[1;35mhttps://discord.gift/{code}\033[0m"
-      nitro_codes.append(link)
-  return nitro_codes
+    nitro_codes = []
+    for _ in tqdm(range(num), desc="Generating Nitro Codes", unit="code"):
+        code = "".join(random.choices(
+            string.ascii_uppercase + string.digits + string.ascii_lowercase,
+            k=16
+        ))
+        link = f"{Fore.LIGHTMAGENTA_EX}https://discord.gift/{code}{Style.RESET_ALL}"
+        nitro_codes.append(link)
+    return nitro_codes
 
 def save_to_file(nitro_codes):
-  with open("Nitro.txt", "w", encoding='utf-8') as file:
-      for nitro_code in nitro_codes:
-          clean_code = nitro_code.replace("\033[1;35m", "").replace("\033[0m", "")
-          file.write(clean_code + "\n")
+    with open("Nitro.txt", "w", encoding='utf-8') as file:
+        for nitro_code in nitro_codes:
+            clean_code = nitro_code.replace(f"{Fore.LIGHTMAGENTA_EX}", "").replace(f"{Style.RESET_ALL}", "")
+            file.write(clean_code + "\n")
 
 def main():
     print_header()
     print_disclaimer()
 
-    user_agreement = input("\n\033[1;31mDo you accept the terms and conditions? (yes/no): \033[0m").lower()
+    user_agreement = input(f"\n{Fore.RED}Do you accept the terms and conditions? (yes/no): {Style.RESET_ALL}").lower()
 
     if user_agreement != "yes":
-        print("\033[1;31mYou must accept the terms and conditions to use this program.\033[0m")
+        print(f"{Fore.RED}You must accept the terms and conditions to use this program.{Style.RESET_ALL}")
         return
 
-    num = int(input('\033[1;37mHow many Nitro links to generate: \033[0m'))
+    num = int(input(f'{Fore.WHITE}How many Nitro links to generate: {Style.RESET_ALL}'))
 
     if num <= 0:
-        print("\033[1;31mPlease enter a valid number greater than 0.\033[0m")
+        print(f"{Fore.RED}Please enter a valid number greater than 0.{Style.RESET_ALL}")
         return
 
-    print(f"\033[1;32mGenerating {num} Nitro codes. Please wait...\033[0m")
+    print(f"{Fore.GREEN}Generating {num} Nitro codes. Please wait...{Style.RESET_ALL}")
 
     start_time = time.time()
     nitro_codes = generate_nitro_codes(num)
 
-    print("\n\033[1;32mGenerated Nitro Codes:\033[0m")
+    print(f"\n{Fore.GREEN}Generated Nitro Codes:{Style.RESET_ALL}")
     for code in nitro_codes:
         print(code)
 
     save_to_file(nitro_codes)
     elapsed_time = time.time() - start_time
 
-    print(f"\n\033[1;32mGenerated {num} codes | Time taken: {elapsed_time:.6f} seconds\033[0m")
-    print("\033[1;36mNitro codes have been saved to Nitro.txt.\033[0m")
-    print("\033[1;36mThank you for using this Nitro code generator.\033[0m")
-    print("\033[1;36mFeel free to share the joy of Nitro with your friends!\033[0m\n")
+    print(f"\n{Fore.GREEN}Generated {num} codes | Time taken: {elapsed_time:.6f} seconds{Style.RESET_ALL}")
+    print(f"{Fore.CYAN}Nitro codes have been saved to Nitro.txt.{Style.RESET_ALL}\n")
 
     time.sleep(0.2)
-    input("\033[1;37mPress Enter to close this\033[0m")
+    input(f"{Fore.WHITE}Press Enter to close this{Style.RESET_ALL}")
 
 if __name__ == "__main__":
     main()
