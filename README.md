@@ -12,6 +12,7 @@ A Python script to generate Discord Nitro codes.
 - [ ] **Duplicate Check:** Ensure generated codes are unique.
 - [ ] **Customizable Output File:** Allow users to specify the output file name and location.
 - [ ] **Progress Indicator:** Display a progress indicator during code generation.
+- [ ] **Logo on readme:** Add the logo on the readme.
 
 ## Usage
 
